@@ -1,0 +1,1 @@
+A project that only has the [[What is a JDK|JDK]] and a simple JUnit5 test dependency. No spring, no frameworks.
