@@ -200,3 +200,9 @@ Una función sin return, tiene un tipo de retorno void, pero en tiempo de ejecuc
 Ojo, undefined es tanto tipo, como valor. Y además al definirlo como tipo, es estricto y restrictivo, lo que quiere decir que si la función devuelve algo distinto a undefined, dará error en compilación.
 En cambio, si el tipo de retorno de una función es void, simplemente ignorará el valor devuelto, siempre y cuando se haga en una asignación de una función a un tipo de función.
 
+```TypeScript
+const noReturnFunction = (contador: {n: number}) => {contador.n += 1}
+const myNum = {number: 1};
+console.log(noReturnFunction(myNum));
+console.log(myNum);
+```
