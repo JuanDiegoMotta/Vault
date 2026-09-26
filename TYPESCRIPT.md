@@ -22,7 +22,7 @@ El compilador de TypeScript (tsc) se encarga de "transpilar" (convertir un lengu
 Lo que se termina ejecutando es JS en el motor V8 del navegador o de Node.js (en servidor)
 Por tanto TS existe en tiempo de compilación pero no existe en tiempo de ejecución.
 
-**Inferencia de tipos**
+## INFERENCIA DE TIPOS
 
 Typescript también es capaz de deducir los tipos sin que los escribas explícitamente. Por ejemplo, puede dar error en compilación en cuanto estás desarrollando si intentas acceder a una propiedad que no esté definida o si intentas guardar un valor en una propiedad que no es el tipo correcto:
 ```TypeScript
@@ -37,7 +37,7 @@ usuario.edad = "28";      // ❌ Error: edad es number
 usuario.email = "a@b.com"; // ❌ Error: la propiedad email no existe
 ```
 
-**Any**
+## ANY
 
 La keywork any, más que significar que esa variable pueda tomar cualquier tipo, realmente lo que quiere decir es que *ignore* el tipado de typescript para esa variable. Esto hará que las sugerencias de autocompletado y los errores que podría haber detectado typescript ya no aparezcan.
 
@@ -47,7 +47,7 @@ let anyType : any = "Hola";
 anyType.aaa;
 ```
 
-**La variable const**
+## La variable const
 Const es una keyword que existe en JS. Cuando una variable se declara con const, al asignarle un objeto se le está pasando la referencia a ese objeto. Si intentamos reasignar la variable nos dará error:
 ```TypeScript
 const myVariable = {
@@ -78,7 +78,7 @@ let myVariable = 2;
 myVariable = 5 //-> Se ha reescrito el valor por completo
 ```
 
-**Desestruturación**
+## Desestructuración
 
 Guardar los valores de un objeto o array en variables en una sola linea.
 
@@ -154,9 +154,9 @@ const{prop3: {inProp}} = myObject;
 console.log(inProp); //-> 34
 ```
 
-**Funciones en TS/JS**
+## Funciones en TS/JS
 
-*Arrow functions*
+#### *Arrow functions*
 
 ```TypeScript
 //Una función normal 
@@ -173,7 +173,9 @@ const myFunction2 = (a: number, b: number) => {
 const myFunction3 = (a: number, b: number) => a + b;
 ```
 
-*Cuerpo de función vs objeto*
+Las arrows function no tienen su propio this. Usan el this del lugar en el que se escribieron.
+
+#### *Cuerpo de función vs objeto*
 
 ```TypeScript
 const function1 = () => 5;
@@ -213,6 +215,13 @@ console.log(myNum); // 2
 
 type UndefinedFunction = (nombre: string) => undefined;
 const usarConTexto = (texto: string, fn: UndefinedFunction) => fn(texto);
-usarConTexto("Hola Juan", (n) => console.log(n));
+usarConTexto("Hola Juan", (n) => n + ", como estas?"); //DARÁ ERROR
+//Type 'string' is not assignable to type 'undefined'.
+
+//En cambio con void, al querer decir que no importa lo que devuelva la funcion, no dará error.
+type FunctionVoid = (nombre: string) => void;
+const usarConTexto = (texto: string, fn: FunctionVoid) => fn(texto);
+console.log(usarConTexto("Hola Juan", (n) => n + ", como estas?")); //OK
 
 ```
+
