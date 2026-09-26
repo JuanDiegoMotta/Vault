@@ -201,8 +201,18 @@ Ojo, undefined es tanto tipo, como valor. Y además al definirlo como tipo, es e
 En cambio, si el tipo de retorno de una función es void, simplemente ignorará el valor devuelto, siempre y cuando se haga en una asignación de una función a un tipo de función.
 
 ```TypeScript
-const noReturnFunction = (contador: {n: number}) => {contador.n += 1}
-const myNum = {number: 1};
-console.log(noReturnFunction(myNum));
-console.log(myNum);
+const noReturnFunction = (contador: {n: number}) => {
+	contador.n += 1
+} //Función sin retorno
+
+const myNum = {n: 1};
+console.log(noReturnFunction(myNum)); // Devuelve undefined en tiempo de ejecución
+console.log(myNum); // 2
+
+//Si definimos el tipo de una funcion y establecemos que su return sea undefined, esto es estricto y no podemos pasar una función a este tipo que no devuelva undefined.
+
+type UndefinedFunction = (nombre: string) => undefined;
+const usarConTexto = (texto: string, fn: UndefinedFunction) => fn(texto);
+usarConTexto("Hola Juan", (n) => console.log(n));
+
 ```
