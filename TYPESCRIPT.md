@@ -195,3 +195,5 @@ console.log(function3()); // 5
 console.log(function4()); // {number: 5}
 ```
 
+*Void vs undefined*
+Void es un tipo de TS, undefined es lo que devuelve en tiempo de ejecución
