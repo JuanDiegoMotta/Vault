@@ -153,3 +153,10 @@ console.log(rest); //-> {prop1: 1, prop3: {inProp: 34}}
 const{prop3: {inProp}} = myObject;
 console.log(inProp); //-> 34
 ```
+
+**Funciones en TS/JS**
+
+*Arrow functions*
+
+```TypeScript
+```
