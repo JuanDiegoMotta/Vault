@@ -159,4 +159,39 @@ console.log(inProp); //-> 34
 *Arrow functions*
 
 ```TypeScript
+//Una función normal 
+function myFunction(a: number, b:number): number{
+	return a + b;
+};
+
+//Arrow function con retorno explícito
+const myFunction2 = (a: number, b: number) => {
+	return a + b;
+};
+
+//Arrow function con retorno implícito (sin llaves ni return)
+const myFunction3 = (a: number, b: number) => a + b;
 ```
+
+*Cuerpo de función vs objeto*
+
+```TypeScript
+const function1 = () => 5;
+
+const function2 = () => {5}; // Devuelve undefined
+
+const function3 = () => { return 5 }; // ` => { ` Indica cuerpo de función, no objeto
+
+const function4 = () => ({number: 5}); // ` => ({` Indica objeto
+
+  
+
+console.log(function1()); // 5
+ 
+console.log(function2()); // undefined
+
+console.log(function3()); // 5
+
+console.log(function4()); // {number: 5}
+```
+
