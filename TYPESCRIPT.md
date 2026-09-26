@@ -77,3 +77,79 @@ myVariable = 3 //-> ERROR: Trying to reassigna a constant
 let myVariable = 2;
 myVariable = 5 //-> Se ha reescrito el valor por completo
 ```
+
+**Desestruturación**
+
+Guardar los valores de un objeto o array en variables en una sola linea.
+
+```TypeScript
+//Ejemplo simple sin desestructuración
+const persona = {
+	nombre: "Ana",
+	edad: 25,
+	sexo: "F"
+}
+
+const nombre = persona.nombre;
+const edad = persona.edad;
+const sexo = persona.sexo;
+
+console.log(nombre) //-> "Ana"
+console.log(edad) // -> 25
+console.log(sexo) //"F"
+
+//Ejemplo simple de desestructuración
+const {nombre, edad, sexo} = persona
+console.log(nombre) //-> "Ana"
+console.log(edad) // -> 25
+console.log(sexo) //"F"
+
+```
+
+Algunos comportamientos de la desestructuración
+```TypeScript
+//Ejemplo con arrays
+const myArray = [1, 2, 3, 4, 5];
+
+//rest: toma los valores restantes del array como un subarray
+const [one, two, three, ...rest] = myArray;
+console.log(one); //-> 1
+console.log(two); //-> 2
+console.log(three); //-> 3
+console.log(rest); //-> [4,5]
+
+//salto de posiciones
+const[,,number] = myArray;
+console.log(number) //-> 3
+
+//Valores por defecto y undefined
+const myArray2 = [1,2];
+const[one,two,three=5,four, five] = myArray2;
+console.log(one) //-> 1
+console.log(two) //-> 2
+console.log(three) //-> 5 (valor por defecto cuando usamos =, solo si es undefined)
+console.log(four) //-> undefined (si intentamos acceder a una posición no definida)
+console.log(five) //-> undefined
+
+//Ejemplo con objetos
+const myObject = {
+	prop1 : 1,
+	prop2 : "Hello",
+	prop3 : {
+		inProp: 34
+	}
+}
+
+//Cambio de nombre de variable
+const {prop1: variable} = myObject;
+console.log(variable); //-> 1 
+
+//rest: toma los valores restantes del objeto (no importa el orden, los de antes y dsps)
+const {prop2..rest} = myObject;
+console.log(prop2); //-> "Hello"
+console.log(rest); //-> {prop1: 1, prop3: {inProp: 34}}
+
+//desestructuración anidada 
+const{prop3: {inProp}} = myObject;
+console.log(inProp); //-> 34
+```
