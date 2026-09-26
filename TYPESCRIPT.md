@@ -196,4 +196,7 @@ console.log(function4()); // {number: 5}
 ```
 
 *Void vs undefined*
-Void es un tipo de TS, undefined es lo que devuelve en tiempo de ejecución
+Una función sin return, tiene un tipo de retorno void, pero en tiempo de ejecución el valor que retorna es undefinded.
+Ojo, undefined es tanto tipo, como valor. Y además al definirlo como tipo, es estricto y restrictivo, lo que quiere decir que si la función devuelve algo distinto a undefined, dará error en compilación.
+En cambio, si el tipo de retorno de una función es void, simplemente ignorará el valor devuelto, siempre y cuando se haga en una asignación de una función a un tipo de función.
+
