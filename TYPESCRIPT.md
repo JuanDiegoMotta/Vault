@@ -329,46 +329,14 @@ aplicarYmostrar(7, (t) => t+5);
 
 #### Compatibilidad de funciones (tipado estructural)
 
-En TS un tipo de función no es un molde que haya que copiar exactamente. Es un **contrato de uso**. TS se pregunta:
-
-> ¿Puedo usar esta función de forma segura donde se espera ese tipo?
-
-A esto se le llama **tipado estructural**: importa que encaje, no que sea idéntico. Java, en cambio, usa **tipado nominal**.
-
-**Llamar frente a pasar:**
-
-TypeScript
-
 ```TypeScript
-const doble = (n: number) => n * 2;
-doble();  // ❌ LLAMAR con menos argumentos: le falta un dato
-```
+//Si intentas llamar a una función con menos parámetros de los declarados, fallará:
+function saltar(alutra: number) {
+	return altura * 2;
+}
 
-TypeScript
+saltar(); //ERROR
 
-```TypeScript
-type Filtro = (n: number) => boolean;
-const f: Filtro = () => true; // ✅ PASAR una función que pide menos: el dato que sobra se ignora
-```
-
-**Reglas:**
-
-||Regla|Ejemplo con `type F = (n: number) => boolean`|
-|---|---|---|
-|Parámetros|Puede **pedir menos**, nunca más|`() => true` ✅ · `(n, extra) => true` ❌|
-|Tipo de parámetro|Debe aceptar lo que se le pasa|`(n: string) => true` ❌|
-|Retorno|Debe ser **compatible**. Puede **dar más** (propiedades extra)|`(n) => n * 2` ❌ (number, no boolean)|
-|Retorno `void` en callback|Puede devolver **cualquier cosa**, se ignora|`(n) => lista.push(n)` ✅ con `forEach`|
-
-- **Parámetros:** a la función no le puede **faltar** nada de lo que necesita.
-- **Retorno:** a quien la usa no le puede **faltar** nada de lo que espera.
-
-**Por qué es así:** JS siempre ha permitido pasar más argumentos de los declarados, y los sobrantes se ignoran. Es lo que permite escribir `map((n) => ...)` aunque `map` pase 3 argumentos: `(elemento, índice, array)`.
-
-**Excepción de `void`:** en un **tipo de función** (callback), `void` significa "no voy a usar lo que devuelvas". En una función declarada con `: void`, sí está prohibido devolver algo:
-
-TypeScript
-
-```TypeScript
-function f(): void { return 5; } // ❌
+//En cambio si creas un tipo de función y luego intentas pasarle una función que pida menos parámetros sí que va a compilar
+type Saltar(altura: number)
 ```
