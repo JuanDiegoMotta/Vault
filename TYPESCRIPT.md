@@ -291,5 +291,16 @@ const tupla2 = ["Hola", 1, 2] as const; //`as const` hace que sea una tupla de s
 
 3- Pasar como parámetro de una función
 ```TypeScript
+//Definimos función que pueda recibir otra función como parámetro (callback)
+const myFunction = (texto: string, fn: (t:string) => string) => console.log(fn(texto));
+const concatenarMundo = (texto: string) => texto + " mundo";
+//Pasamos concatenarMundo como parámetro
+myFunction("Hola", concatenarMundo); // Hola mundo
+```
 
+4- Usar como retorno de una función
+```TypeScript
+const crearSumador = (n: number) => (x: number) => x + n;
+const sumar10 = crearSumador(10);
+console.log(sumar10(5));
 ```
