@@ -262,5 +262,34 @@ console.log(saludar("Juan")); //-> "Hola Juan"
 const myFunction = () => "Hola mundo";
 const myObject = {fn: myFunction};
 console.log(myObject.fn()); //Hola mundo
+
+//Ejemplo de guardar en un array
+const myArray = [() => "Hola mundo", 2, 3];//El tipo del array para TS es (number | (() => string))[]
+console.log(myArray[0]()); //ERROR: TS no sabe si esto es un number o un () => string, por eso te lanza error
+console.log(myArray[1]); // 2
+console.log(myArray[2]); // 3
+
+const myArray2 : [()=> string, number, number] = [() => "Hola mundo", 2, 3]; //Al definir los tipos, lo conviertes en tupla y TS ya sabe el orden
+
+console.log(myArray2[0]()); //Hola mundo
+console.log(myArray2[1]); //2
+console.log(myArray2[2]); //3
+
+const myArray3 = [() => "Hola mundo", 2, 3] as const; //tupla de solo lectura
+console.log(myArray3[0]()); //Hola mundo
+console.log(myArray3[1]); //2
+console.log(myArray3[2]); //3
+
+//Array vs tupla
+
+const arreglo: number[] = [1,2,3]; // `: tipo[]` define un array
+
+const tupla: [string, number, number] = ["Hola", 1, 2]; //`: [tipo, tipo,...tipo]` define una tupla
+
+const tupla2 = ["Hola", 1, 2] as const; //`as const` hace que sea una tupla de solo lectura
 ```
 
+3- Pasar como parámetro de una función
+```TypeScript
+
+```
