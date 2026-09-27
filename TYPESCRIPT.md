@@ -225,3 +225,14 @@ console.log(usarConTexto("Hola Juan", (n) => n + ", como estas?")); //OK
 
 ```
 
+#### Shorthand property
+```TypeScript
+//Si la variable que guarda el valor se llama igual que la propiedad, puedes escribir solo la prop una vez
+const edad = 25;
+const usuario = {nombre: "Juan", edad}; // = {nombre: "Juan, edad: 25}
+
+//Es lo contrario de la desestructuración, si está a la izda, extraes la prop de un objeto en una variable, si está a la derecha, creas la propiedad en un objeto
+const persona = {altura = "1,7m", peso: 85}
+const {altura}
+```
+
