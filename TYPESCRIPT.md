@@ -256,5 +256,11 @@ En JS las funciones son un valor más, por tanto pueden:
 const saludar = (t: string) => "Hola " + t;
 console.log(saludar("Juan")); //-> "Hola Juan"
 ```
-2- 
+2- Guardar en array u objeto
+```TypeScript
+//Ejemmplo de guardado en un objeto
+const myFunction = () => "Hola mundo";
+const myObject = {fn: myFunction};
+console.log(myObject.fn()); //Hola mundo
+```
 
