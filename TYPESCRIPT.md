@@ -338,5 +338,22 @@ function saltar(alutra: number) {
 saltar(); //ERROR
 
 //En cambio si creas un tipo de función y luego intentas pasarle una función que pida menos parámetros sí que va a compilar
-type Saltar(altura: number)
+type Saltar = (altura: number) => :number;
+
+const salto7: Saltar = () => 7; //OK
 ```
+
+Esto es porque en TS los tipos de función no son un contrato que se tenga que cumplir a rajatabla. TS se preguntará:
+¿Puedo usar esta función de forma segura donde se espera ese tipo?
+
+```TypeScript
+//Una forma de comprobar si compilará o no es imaginarnos que se llama a la función que hemos pasado con todos los argumentos y ver si no hay ningún problema
+
+//En el ejemplo anterior, imaginemos
+salto7(10) //-> 7
+//Simplemente ignorará el parámetro, no hay problema
+
+const salto10Extra: Saltar = (altura: number, saltos: number) => altura * saltos;
+//Ni si quiera va a compilar, salto10Extra(10) dará problemas ya que hay un parámetro que nunca se va a informar y que estamos explícitando que se necesita.
+```
+
