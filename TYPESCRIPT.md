@@ -232,7 +232,29 @@ const edad = 25;
 const usuario = {nombre: "Juan", edad}; // = {nombre: "Juan, edad: 25}
 
 //Es lo contrario de la desestructuración, si está a la izda, extraes la prop de un objeto en una variable, si está a la derecha, creas la propiedad en un objeto
-const persona = {altura = "1,7m", peso: 85}
-const {altura}
+
+const persona = {altura: "1,7m", peso: 85}
+
+const {altura} = persona;
+
+console.log(altura); //"1,7m"
+
+  
+
+const nombre = "Julian";
+
+const usuario = {nombre};
+
+console.log(usuario); // {nombre: "Julian"}
 ```
+
+#### Funciones como *first class citizens*
+
+En JS las funciones son un valor más, por tanto pueden:
+1- Ser guardadas en una variable:
+```TypeScript
+const saludar = (t: string) => "Hola " + t;
+console.log(saludar("Juan")); //-> "Hola Juan"
+```
+2- 
 
