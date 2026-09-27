@@ -310,8 +310,18 @@ console.log(sumar10(5));
 Sintaxis del tipo de una función:
 (parametros con sus tipos) => tipo de retorno
 
+Callback -> Función que se pasa a otra para que esta la ejecute.
+Función de orden superior -> Función que recibe o devuelve otra función.
+
+Ejemplo:
 ```TypeScript
 //Tipar un callback directamente en el parámetro
-const funcionDePrimerOrden = (n: nubmer, (t:number) => number);
+const aplicarYmostrar = (n: nubmer, fn: (t:number) => number) => {
+	console.log(fn(n));
+}
+aplicarYmostrar(2, (t) => t + 10); //12
 
+
+
+//
 ```
