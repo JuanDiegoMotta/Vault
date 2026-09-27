@@ -304,3 +304,14 @@ const crearSumador = (n: number) => (x: number) => x + n;
 const sumar10 = crearSumador(10);
 console.log(sumar10(5));
 ```
+
+#### Tipar funciones
+
+Sintaxis del tipo de una función:
+(parametros con sus tipos) => tipo de retorno
+
+```TypeScript
+//Tipar un callback directamente en el parámetro
+const funcionDePrimerOrden = (n: nubmer, (t:number) => number);
+
+```
