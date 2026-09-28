@@ -476,6 +476,20 @@ Si creas un type como la union de otros dos (&) el type resultante tendrá todas
 ```TypeScript
 type ConId = { id: string };
 type User = {name:string, age:number}
-type UserConId = 
+type UserConId = ConId & User;
+
+const user: UserConId = { id: 123, name: "Sara", age: 26}
 
 ```
+
+Si intentaras crear un type con intersection pero tienen propiedades incompatibles, no dará error TS, el type sería "never", es decir nunca podrías crear un objeto.
+```TypeScript
+type ConId = { id: string };
+type User = {id: number}
+type UserConId = ConId & User;
+
+const user: UserConId = { id: 123} //Type 'number' is not assignable to type 'never'.
+```
+
+#### Type indexing
+Obtener un tipo 
