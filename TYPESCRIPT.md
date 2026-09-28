@@ -357,3 +357,28 @@ const salto10Extra: Saltar = (altura: number, saltos: number) => altura * saltos
 //Ni si quiera va a compilar, salto10Extra(10) dará problemas ya que hay un parámetro que nunca se va a informar y que estamos explícitando que se necesita.
 ```
 
+
+#### Optional properties
+
+Se puede declarar una propiedad como opcional:
+```TypeScript
+type Hero = {
+	id: string
+	name: string
+	age: number
+	isActive?: boolean //El tipo de la propiedad es (boolean | undefined)
+}
+
+//Al leer el valor de una propiedad opcional, podemos usar el encadenamiento opcional
+const thor = {id:1, name: "Thor", age: 25};
+const lowerCaseName = thor.isActive?.toLowerCase; //Si existe -> boolean, Si no -> undefined
+
+//Esto funciona en cadena y con funciones
+usuario?.direccion?.ciudad //se corta en el primer undefined
+callback?.() //llama a la función solo si existe
+
+//Se suele utilizar con null coalescing `??` que da un valor por defecto.
+thor.isActive?.toLowerCase() ?? true; //Ya no puede ser undefined
+
+
+```
