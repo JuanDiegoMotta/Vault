@@ -526,4 +526,20 @@ type myOtherNumber = typeof myNumber; // tipo: number
 ReturnType devuelve el tipo del valor de retorno de una función.
 ```TypeScript
 
+type User = {nombre: string, age: number};
+
+const myFunction = ():User => ({nombre: "juan", age: 15});
+
+type OtherUser = ReturnType<typeof myFunction>;
+
 ```
+
+**Resumen de las herramientas para sacar tipos de otras cosas:**
+
+|Quiero...|Uso|
+|---|---|
+|Combinar dos tipos|`A & B`|
+|El tipo de una propiedad|`Tipo["prop"]`|
+|El tipo de un valor|`typeof valor`|
+|El tipo de retorno de una función|`ReturnType<typeof fn>`|
+
