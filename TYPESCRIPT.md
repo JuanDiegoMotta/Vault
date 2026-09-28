@@ -379,6 +379,17 @@ callback?.() //llama a la función solo si existe
 
 //Se suele utilizar con null coalescing `??` que da un valor por defecto.
 thor.isActive?.toLowerCase() ?? true; //Ya no puede ser undefined
+```
+
+#### Readonly properties
+
+Una propiedad se puede declarar como readonly:
+```TypeScript
+type Hero = {
+	readonly id: number
+	name: string
+	age: number
+}
 
 
 ```
