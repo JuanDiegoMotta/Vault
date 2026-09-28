@@ -391,5 +391,44 @@ type Hero = {
 	age: number
 }
 
+const myHero: Hero = {
+	id: 123
+	name: "Thor"
+	age: 25
+}
 
+myHero.id = 234 //Da error al compilar porque se ha declarado id como readonly
 ```
+
+Hay que tener en cuenta que esto en tiempo de ejecución, en JS,  si se puede modificar sin problema, como cualquier tipo. El error solo nos aparece al compilar.
+
+Por otro lado, es superficial, solo protege la propiedad, no lo que hay dentro si es un objeto
+
+```TypeScript
+type Usuario = {
+	id: number,
+	name: string,
+	readonly inventory: {
+		torch: number,
+		flint: number
+	}
+}
+
+const myUser: Usuario = {
+	id: 123
+	name: "Juan"
+	inventory: {
+		torch: 3
+		flint: 2
+	}
+}
+
+myUser.inventory = {torch:8, flint: 2} //ERROR, no se puede cambiar la referencia = reasignar objeto distinto
+
+myUser.inventory.torch = 8 //OK -> El readonly no protege la propiedad interna del objeto
+```
+
+#### Object.freeze()
+
+Este método se utiliza para indi
+
