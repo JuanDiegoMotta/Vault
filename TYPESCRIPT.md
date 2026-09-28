@@ -459,6 +459,15 @@ freezedObj.name = "Spiderman" //ERROR -> Esta vez sí lo sabe TS
 
 Se puede usar la sintaxis de los template string de JS para crear tipos de string con un patrón.
 ```TypeScript
+type Id = `${string}-${string}-${string}-${string}`;
 
+const myString: Id = "abc-def-ghi-jkl" //OK
+const myString2: Id = "abc" //ERROR
+
+//Se utiliza sobre todo para combinados de uniones
+type Color = "rojo" | "azul";
+type Size = "sm" | "lg";
+type ClaseBoton = `btn-${color}-${size}`;
+//= "btn-rojo-sm" | "btn-rojo-lg" | "btn-azul-sm" | "btn-azul-lg"
 ```
 
