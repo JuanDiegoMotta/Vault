@@ -492,4 +492,38 @@ const user: UserConId = { id: 123} //Type 'number' is not assignable to type 'ne
 ```
 
 #### Type indexing
-Obtener un tipo 
+Obtener un tipo a partir de la propiedad de otro
+```TypeScript
+//Type indexing
+
+type Hero = {
+    name: string
+    bag:{
+        chips:number
+        cola: number
+    }
+}
+
+const fillBag = (chips: number, cola: number): Hero["bag"] => ({chips, cola});
+const indexedNumber: Hero[bag][chips] = 42;
+```
+
+#### Typeof
+Existen dos tipos:
+- El de JS -> Devuelve un string
+```TypeScript
+const myNumber = 42;
+console.log(typeof myNumber); //"number"
+```
+- El de TS -> Va en la posición de tipo y devuelve un TIPO y se borra al compilar. Se utiliza para inferir tipos a partir de un valor.
+```TypeScript
+const myNumber = 42;
+type myOtherNumber = typeof myNumber; // tipo: number
+```
+
+#### ReturnType
+
+ReturnType devuelve el tipo del valor de retorno de una función.
+```TypeScript
+
+```
