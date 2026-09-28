@@ -471,3 +471,11 @@ type ClaseBoton = `btn-${color}-${size}`;
 //= "btn-rojo-sm" | "btn-rojo-lg" | "btn-azul-sm" | "btn-azul-lg"
 ```
 
+#### Intersection types
+Si creas un type como la union de otros dos (&) el type resultante tendrá todas las propiedades de ambos.
+```TypeScript
+type ConId = { id: string };
+type User = {name:string, age:number}
+type UserConId = 
+
+```
