@@ -430,5 +430,35 @@ myUser.inventory.torch = 8 //OK -> El readonly no protege la propiedad interna d
 
 #### Object.freeze()
 
-Este método se utiliza para indi
+Este método se utiliza para hacer que un objeto entero sea solo readonly
+```TypeScript
+type Hero = {
+	id: number
+	name: string
+	age: number
+}
+
+const myHero: Hero = {
+	id: 123
+	name: "Thor"
+	age: 25
+}
+
+Object.freeze(myHero);
+myHero.name = "Spiderman"; //OJO: No da error en este caso pq TS no sabe que lo has congelado
+
+console.log(myHero.name) //Thor
+//En tiempo de ejecución sí que se congela el objeto y no permite el cambio
+
+//Para que TS sepa que se ha congelado hay que utilizar el objeto que devuelve la llamada
+const freezedObj = Object.freeze(myHero);
+freezedObj.name = "Spiderman" //ERROR -> Esta vez sí lo sabe TS
+```
+
+#### Template literal types
+
+Se puede usar la sintaxis de los template string de JS para crear tipos de string con un patrón.
+```TypeScript
+
+```
 
