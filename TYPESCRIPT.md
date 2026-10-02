@@ -588,3 +588,27 @@ const changedRgb = myRgb.map((n) => n/2); //No da error, .map no cambia la tupla
 #### CLOSURE
 
 Una función creada dentro de otra, recuerda las variables de la función de fuera. Incluso cuando la de fuera ha terminado. Estas variables siguen vivas y son privadas.
+```TypeScript
+
+type Estado = [() => number, (n: number) => void];
+
+const crearEstado = (inicial: number): Estado => {
+    let valor = inicial;
+    const leer = () => valor;
+    const escribir = (n: number) => {valor = n};
+    return [leer, escribir];
+}
+
+const [leer, escribir] = crearEstado(10);
+leer(); //-> 10
+escribir(5);
+leer(); //-> 5; Las dos comparten la misma variable.
+```
+
+
+#### ES O FABRICA?
+
+Antes de poner un alias de tipo de función pregúntate si **es** de ese tipo o si **fabrica** ese tipo de función.
+```TypeScript
+
+```
