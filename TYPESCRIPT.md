@@ -567,4 +567,24 @@ const d = (): [number, string] => [123, "x"]; //-> Tupla anotando el retorno
 
 ```
 
-Una tupla normal sigue teniendo push() y TS no se va a que
+Una tupla normal sigue teniendo push() y TS no se va a quejar. Para que sea fija del todo, hay que hacerla readonly.
+
+```TypeScript
+
+type RGB = readonly [number, number, number];
+
+const myRgb: RGB = [255, 0, 182];
+
+myRgb[0] = 182; //Cannot assign to '0' because it is a read-only property.
+myRgb.push(255); //Property 'push' does not exist on type 'RGB'.
+
+
+const changedRgb = myRgb.map((n) => n/2); //No da error, .map no cambia la tupla original, devuelve una nueva.
+```
+
+
+**Map** y **filter** siempre devolverán un array normal. Aunque el original sea una tupla.
+
+#### CLOSURE
+
+Una función creada dentro de otra, recuerda las variables de la función de fuera. Incluso cuando la de fuera ha terminado. Estas variables siguen vivas y son privadas.
