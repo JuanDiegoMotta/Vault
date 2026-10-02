@@ -634,3 +634,22 @@ const arrowFunctionReturnExplicito = (n:number): number => { return n*2;}
 
 const arrowFunctionReturnImplicito = (n:number): number => n*2;
 ```
+
+#### USAR TYPEOF DENTRO DE UN IF
+Usar typeof dentro de un if hace que TS infiera el tipo dentro de esa rama
+```TypeScript
+const myArray = [() => "x", 42, true]; //-> Según TS el tipo (()=>string|number|boolean)[]
+
+myArray.forEach((elemento) => {
+    if(typeof elemento === "function"){
+        console.log(elemento()); //Aquí sabe que es function
+    } else if(typeof elemento === "string"){
+        console.log(elemento); //Aquí sabe que es string
+    }else{
+        console.log("otro") //Aquí sabe que es boolean
+    }
+})
+```
+typeof va delante del valor y devuelve un string.
+
+
