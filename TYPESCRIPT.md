@@ -652,4 +652,74 @@ myArray.forEach((elemento) => {
 ```
 typeof va delante del valor y devuelve un string.
 
+#### As const
 
+As const aplica a todos los niveles:
+- Hace que las tuplas se vuelvan readonly 
+- Los valores se fijen como literales
+
+```TypeScript
+const config = { tema: "oscuro", zoom: [1, 2] };
+// { tema: string; zoom: number[] }
+
+const config2 = { tema: "oscuro", zoom: [1, 2] } as const;
+// { readonly tema: "oscuro"; readonly zoom: readonly [1, 2] }
+```
+
+##### Parámetros readonly
+
+Si una función **solo lee** un array o una tupla, tipa el parámetro como `readonly`. Así acepta tanto versiones normales como `readonly` (al revés no funciona):
+
+TypeScript
+
+```TypeScript
+type RGB = readonly [number, number, number];
+const aCss = ([r, g, b]: RGB) => `rgb(${r}, ${g}, ${b})`;
+
+aCss([0, 0, 0]);      //OK
+aCss(paleta.primario); //OK: readonly [0, 120, 255] encaja con RGB
+```
+
+##### Utility types
+
+Tipos que trae TS de serie. Los tipos se pasan con **`< >`**, nunca con `( )`:
+
+TypeScript
+
+```TypeScript
+const saludar = (nombre: string, edad: number) => `Hola ${nombre}`;
+
+type R = ReturnType<typeof saludar>;  // string
+type P = Parameters<typeof saludar>;  // [nombre: string, edad: number] → SIEMPRE una tupla
+type L = Readonly<{ a: number }>;     // { readonly a: number }
+```
+
+##### Todo es superficial
+
+`const`, `readonly` y `Object.freeze` **solo protegen el primer nivel**. Los objetos y **arrays** anidados se pueden seguir modificando.
+
+**Los arrays son objetos**: se guardan y se pasan por referencia. Solo los primitivos (`string`, `number`, `boolean`, `null`, `undefined`) van por valor.
+
+TypeScript
+
+```TypeScript
+const juego = Object.freeze({ nivel: 1, items: ["espada"] });
+juego.nivel = 2;            //No cambia (congelado)
+juego.items.push("escudo"); //SÍ cambia: el array interno no está congelado
+console.log(juego.items);   // ["espada", "escudo"]
+```
+
+##### ?? elimina el undefined del tipo
+
+TypeScript
+
+```TypeScript
+type Perfil = { alias?: string };
+const p: Perfil = {};
+
+const a = p.alias;                // string | undefined
+const b = p.alias?.length;        // number | undefined
+const c = p.alias ?? "anónimo";   // string → ya no puede ser undefined
+```
+
+`?.` y `??` son de **JavaScript**, no de TypeScript. TS solo detecta cuándo hacen falta.
