@@ -543,8 +543,28 @@ type OtherUser = ReturnType<typeof myFunction>;
 |El tipo de un valor|`typeof valor`|
 |El tipo de retorno de una función|`ReturnType<typeof fn>`|
 
-####Tuplas
+#### Tuplas
 Son listas con una longitud fija y un tipo específico en cada posición. Solo existen en TS, en ejecución son arrays
 ```TypeScript
 type RGB = [number, number, number];
+
+//El useState de react devuelve una tupla
+const [value, setValue] = useState("Value");
 ```
+
+Array -> Una lista de longitud variable de elementos del mismo tipo: (tipo)[]
+Tupla -> Grupo fijo donde cada posición tiene un significado (rgb, coordenadas, etc)
+
+Ojo! TS nunca infiere tupla por sí solo. Un array literal sin anotar siempre es un array.
+```TypeScript
+const a = [1, 3, 5] //-> Array normal
+
+const b: [number, number] = [1, 2]; //-> tupla (anotando la variable)
+
+const c = [1, 2, 3] as const //-> readonly [1, 2, 3], tupla readonly con valores literales
+
+const d = (): [number, string] => [123, "x"]; //-> Tupla anotando el retorno
+
+```
+
+Una tupla normal sigue teniendo push() y TS no se va a que
