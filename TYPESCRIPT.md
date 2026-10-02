@@ -610,5 +610,27 @@ leer(); //-> 5; Las dos comparten la misma variable.
 
 Antes de poner un alias de tipo de función pregúntate si **es** de ese tipo o si **fabrica** ese tipo de función.
 ```TypeScript
+type Validador = (n: number) => boolean;
 
+const esPositivo: Validador = (n: number) => n>0;
+const crearEsMenorQue = (min: number) => (n: number) => n < min;
+
+esPositivo(2); //-> true
+const menosQueCuatro = crearEsMenorQue(4);
+menosQueCuatro(6) //-> true
+
+```
+
+#### TRES FORMAS DE DECLARAR FUNCIONES
+
+```TypeScript
+
+function normalDeTodaLaVida(n:number): number { //No tiene `=`, solo se usa si se guarda en una variable
+    return n*2;
+}
+
+const expresionDeFuncion = function (n:number): number { return n*2;}
+const arrowFunctionReturnExplicito = (n:number): number => { return n*2;}
+
+const arrowFunctionReturnImplicito = (n:number): number => n*2;
 ```
