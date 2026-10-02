@@ -543,3 +543,8 @@ type OtherUser = ReturnType<typeof myFunction>;
 |El tipo de un valor|`typeof valor`|
 |El tipo de retorno de una función|`ReturnType<typeof fn>`|
 
+####Tuplas
+Son listas con una longitud fija y un tipo específico en cada posición. Solo existen en TS, en ejecución son arrays
+```TypeScript
+type RGB = [number, number, number];
+```
