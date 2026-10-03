@@ -958,5 +958,15 @@ const pintar = (p: Peticion){
 ```
 
 **guards personalizados**
-Si la comprobación es compleja, la puedes poner en una función, pero si solo devolviera boolean TS 
+Si la comprobación es compleja, la puedes poner en una función, pero si solo devolviera boolean TS no estrecha el tipo fuera de ella.
+```TypeScript
+const esUsuario = (x: unknown):boolean => 
+	return typeof x === "object" && x !== null && "nombre" in x;
+
+if (esUsuario(dato)){
+	dato.nombre; //TS no sabe nada, solo vio boolean
+}
+```
+
+Hay que decirle explícitamente a TS que si devuelve true
 
