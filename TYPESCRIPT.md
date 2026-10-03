@@ -804,3 +804,68 @@ Allí donde se llame dicha función, también se debe utilizar await y **siempre
 ```TypeScript
 const repos = await obtenerRepos() //repos: Promise<Any>
 ```
+
+#### INTERFACES
+Una interfaz se utiliza para definir la forma de un objeto. Es muy similar a los tipos, de hecho el 90% de los casos son intercambiables.
+```TypeScript
+interface MyObject{ //-> No tiene = como en los tipos
+	name: string,
+	age: number,
+	id: string
+} // No se suele usar;
+
+type MyObject = {
+	name: string,
+	age: number,
+	id: string
+};
+```
+
+**Extends vs &**
+En las interfaces usamos extends para que una interfaz "extienda" las propiedades de otra
+```TypeScript
+interface Persona {
+	name: string,
+	age: number,
+	sex: string
+}
+
+interface Empleado extends Persona{
+	salario: number
+}
+
+//En cambio con tipos se haría así:
+type Persona2 = { 
+	nombre: string 
+}; 
+type Empleado2 = Persona2 & { salario: number };
+```
+
+Se pueden extender varias a la vez `interface A extends B,C,D...`.
+
+**Fusión de declaraciones**
+Si declaras dos veces la misma interfaz, a diferencia de los tipos, no te dará error, solamente extenderá la interfaz original
+```TypeScript
+interface Config { tema: string }
+interface Config { zoom: number }
+
+const c: Config = { tema: "oscuro", zoom: 1 }; // ✅ tiene las dos
+```
+¿Para qué sirve? Sobre todo para ampliar tipos de librerías sin tocar su código, por ejemplo para añadir una propiedad propia al objeto global window:
+```TypeScript
+interface Window { miApp: { version: string } }
+window.miApp.version; // ✅
+```
+
+**Lo que solo puede hacer un `TYPE`**
+```TypeScript
+type Id = string | number;                        // uniones
+type Rol = "ADMIN" | "EDITOR";                    // uniones de literales
+type RGB = [number, number, number];              // tuplas
+type Validador = (n: number) => boolean;          // tipos de función
+type Ruta = `/${string}`;                         // template literal types
+type Sesion = ReturnType<typeof crearSesion>;     // tipos derivados
+type Claves = keyof typeof paleta;                // keyof / typeof
+```
+
+
