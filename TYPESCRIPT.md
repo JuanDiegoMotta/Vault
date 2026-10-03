@@ -968,5 +968,28 @@ if (esUsuario(dato)){
 }
 ```
 
-Hay que decirle explícitamente a TS que si devuelve true
+Hay que decirle explícitamente a TS que es true está comprobando que es de un tipo en específico:
+```TypeScript
+type Usuario = {
+	nombre: String;
+};
 
+const esUsuario = (u: unknown): u is Usuario =>
+	return typeof x === "object" && x!== null && "nombre" in u;
+
+if(esUsuario(dato)){
+	dato.nombre; //dato: Usuario
+}
+```
+
+### Resumen
+
+|Type guard|Para qué|
+|---|---|
+|`typeof x === "string"`|Primitivos y funciones|
+|`x instanceof Clase`|Objetos de clases (`Error`, `Date`, elementos del DOM...)|
+|`if (x)`, `x !== null`|Descartar `null`/`undefined` (cuidado con `0` y `""`)|
+|`x === "literal"`|Uniones de literales|
+|`"prop" in x`|Objetos distinguibles por sus propiedades|
+|`switch (x.tipo)`|⭐ Uniones discriminadas|
+|`(x): x is T =>`|Comprobaciones reutilizables propias|
