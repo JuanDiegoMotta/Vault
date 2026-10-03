@@ -868,4 +868,26 @@ type Sesion = ReturnType<typeof crearSesion>;     // tipos derivados
 type Claves = keyof typeof paleta;                // keyof / typeof
 ```
 
+#### TYPE GUARD
+**typeof**
+Se usa principalmente para primitivos y funciones
+```TypeScript
+const formatear = (valor: string | number) => {
+	if (typeof valor === "string"){
+		return valor.toUpperCase(); //TS sabrá que es string
+	}
+	
+	return valor.toFixed(2); //TS sabrá que solo puede ser number
+}
+```
+
+**instanceof**
+Se utiliza para objetos de una clase. Instancias.
+```TypeScript
+catch(error){ //error: unknown
+	if (error instanceof Error){
+		console.log(error.message); //error: Error
+	}
+}
+```
 
