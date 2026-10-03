@@ -723,3 +723,39 @@ const c = p.alias ?? "anónimo";   // string → ya no puede ser undefined
 ```
 
 `?.` y `??` son de **JavaScript**, no de TypeScript. TS solo detecta cuándo hacen falta.
+
+#### QUE ES UN ENUM
+Un enum es un conjunto de constantes con nombre agrupadas dentro de un tipo. Sirve para representar un grupo cerrado de opciones
+```TypeScript
+enum Direccion{
+	Arriba, //0
+	Abajo, //1
+	Izda, //2
+	Dcha, //3
+}
+```
+
+Si no le asignas valor a las constantes, tomarán números del 0 a x. Como si fuera un array. 
+En este caso puedes acceder al valor de forma bidireccional:
+```TypeScript
+Direccion[0] //-> "Arriba"
+Direccion.Arriba //-> 0
+```
+
+Lo más común es hacer enums de strings
+```TypeScript
+enum Rol{
+	Admin: "ADMIN",
+	Editor: "EDITOR",
+	Lector: "LECTOR"
+}
+
+const usuario = {nombre: "Ana", rol: Rol.Admin};
+console.log(usuario.rol)// "ADMIN"
+```
+
+Los enum son a la vez un tipo y un valor. Es por eso que existen en ejecución. TSC los transpila y genera código JS. 
+No ocurre como con el código TS que "erasable" (borrable) que sí puede ser ejecutado por node. Ya que solamente se le quitan los tipos y se ponen espacios en blanco.
+En el caso de los enums, necesitamos que se transpilen y se genere el código JS correspondiente. Por eso si queremos ejecutarlo lo podemos hacer con "npx tsx myArchivo.ts".
+
+Recomendación: Usa unión de literales por defecto y  un objeto as const si necesitas los valores en ejecución.
