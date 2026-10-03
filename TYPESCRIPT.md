@@ -935,5 +935,25 @@ Es el más común, todos los tipos de la unión tienen una propiedad común con 
 type Cargando = {
 	estado: "Cargando";
 }
+type Exito = {
+	estado: "Exito";
+	datos: string[];
+}
+type Error = {
+	estado: "Error";
+	mensaje: string;
+}
+
+type Peticion = Exito | Error | Cargando
+const pintar = (p: Peticion){
+	switch(p.estado){
+		case "Exito":
+			return p.datos.join(", "); // p: Exito
+		case "Error":
+			return p.message; //p: Error
+		case "Cargando":
+			return "Cargando...";	//p: Cargando
+	}
+}
 ```
 
