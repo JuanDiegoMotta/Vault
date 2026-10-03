@@ -800,3 +800,7 @@ const obtenerRepos = async () => {
 }
 ```
 
+Allí donde se llame dicha función, también se debe utilizar await y **siempre** devolverá una promesa.
+```TypeScript
+const repos = await obtenerRepos() //repos: Promise<Any>
+```
