@@ -759,3 +759,22 @@ No ocurre como con el código TS que "erasable" (borrable) que sí puede ser eje
 En el caso de los enums, necesitamos que se transpilen y se genere el código JS correspondiente. Por eso si queremos ejecutarlo lo podemos hacer con "npx tsx myArchivo.ts".
 
 Recomendación: Usa unión de literales por defecto y  un objeto as const si necesitas los valores en ejecución.
+
+#### ASYNC, AWAIT Y PROMESAS
+
+Al llamar a una API, la respuesta puede durar tiempo en llegar. Como JS solo tiene 1 hilo de ejecución, si se quedase parado esperando esta respuesta, todo el navegador se quedaría bloqueado (no podrías clicar ni navegar en la página).
+Para eso existen las operaciones asíncronas, JS lanzará la petición, el programa continuará con otras cosas, y se retomará una vez llegue la respuesta.
+
+**PROMISE**
+Una promesa se utiliza para representar un valor que llegará más adelante, puede tener tres estados
+- Pendiente -> todavía no ha llegado el resultado
+- Resuelta -> Ya ha llegado el resultado
+- Rechazada -> Ha fallado, con un error
+
+**FETCH**
+
+`fetch(url)` lanza una petición a una URL e **inmediatamente devuelve una promesa**, no la respuesta.
+```TypeScript
+const promise = fetch()
+```
+
