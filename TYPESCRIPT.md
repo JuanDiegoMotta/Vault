@@ -891,3 +891,16 @@ catch(error){ //error: unknown
 }
 ```
 
+**comprobación de null/undefined**
+```TypeScript
+const input = document.getElementById("email"); // HTMLElement | null
+
+if (input) {
+  input.focus();   // input: HTMLElement (null descartado)
+}
+
+if (input !== null) { /* igual */ }
+```
+
+
+
