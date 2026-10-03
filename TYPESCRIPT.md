@@ -775,6 +775,28 @@ Una promesa se utiliza para representar un valor que llegará más adelante, pue
 
 `fetch(url)` lanza una petición a una URL e **inmediatamente devuelve una promesa**, no la respuesta.
 ```TypeScript
-const promise = fetch()
+const promise = fetch(API_URL) //promise: Promise<Response>, todavía no hay respuesta
+```
+
+**AWAIT**
+`await` significa "espera hasta que llegue la respuesta y dame su valor"
+```TypeScript
+const response = await fectch(API_URL) //response: Response, ya ha llegado la respuesta y tenemos su valor.
+```
+
+OJO! Si después quieres acceder al body de esta respuesta, deberás utilizar `await` de nuevo, ya que se descarga a parte y al ser grande puede tardar más
+```TypeScript
+const response = await fetch(API_URL);  // 1. llegan los datos básicos de la respuesta (estado, cabeceras)
+const data = await response.json();     // 2. se descarga y se interpreta el cuerpo como JSON
+```
+
+**ASYNC**
+Normalmente, `await` solo se puede utilizar en una función marcada como `async`
+```TypeScript
+const obtenerRepos = async () => {
+	const response = await fetch(API_URL);
+	const data = await response.json();
+	return data;
+}
 ```
 
