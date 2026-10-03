@@ -957,3 +957,6 @@ const pintar = (p: Peticion){
 }
 ```
 
+**guards personalizados**
+Si la comprobación es compleja, la puedes poner en una función, pero si solo devolviera boolean TS 
+
