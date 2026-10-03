@@ -902,5 +902,38 @@ if (input) {
 if (input !== null) { /* igual */ }
 ```
 
+**Igualdad con literales**
+```TypeScript
+type Tema = "claro" | "oscuro" | "sistema";
+const aplicar = (t: Tema) => {
+	if (t === "sistema"){
+		return; //t -> sistema
+	}
+	t; //-> "claro" | "oscuro"
+}
+```
 
+**operador in**
+Sirve para distinguir objetos que no son clases por las propiedades que tienen.
+```TypeScript
+type Pez = {nadar: () => void};
+type Ave = {volar: () => void};
+
+const mover = (animal: Pez | Ave) => {
+	if("nadar" in animal){
+		animal.nadar(); //animal: Pez
+	} else {
+		animal.volar(); //animal: Ave
+	}
+}
+```
+
+**uniones discriminadas**
+
+Es el más común, todos los tipos de la unión tienen una propiedad común con un literal distinto. A esta propiedad se la llama el discriminante.
+```TypeScript
+type Cargando = {
+	estado: "Cargando";
+}
+```
 
