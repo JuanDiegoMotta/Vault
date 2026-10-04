@@ -1047,12 +1047,21 @@ Ojo: TS confía en ti (como con `as`). No comprueba que tu función verifique re
 
 ### Resumen
 
-|Type guard|Para qué|
-|---|---|
-|`typeof x === "string"`|Primitivos y funciones|
-|`x instanceof Clase`|Objetos de clases (`Error`, `Date`, elementos del DOM...)|
-|`if (x)`, `x !== null`|Descartar `null`/`undefined` (cuidado con `0` y `""`)|
-|`x === "literal"`|Uniones de literales|
-|`"prop" in x`|Objetos distinguibles por sus propiedades|
-|`switch (x.tipo)`|⭐ Uniones discriminadas|
-|`(x): x is T =>`|Comprobaciones reutilizables propias|
+| Type guard              | Para qué                                                  |
+| ----------------------- | --------------------------------------------------------- |
+| `typeof x === "string"` | Primitivos y funciones                                    |
+| `x instanceof Clase`    | Objetos de clases (`Error`, `Date`, elementos del DOM...) |
+| `if (x)`, `x !== null`  | Descartar `null`/`undefined` (cuidado con `0` y `""`)     |
+| `x === "literal"`       | Uniones de literales                                      |
+| `"prop" in x`           | Objetos distinguibles por sus propiedades                 |
+| `switch (x.tipo)`       | ⭐ Uniones discriminadas                                   |
+| `(x): x is T =>`        | Comprobaciones reutilizables propias                      |
+#### TIPOS GENÉRICOS
+Cuando quieres que una función reciba "algo" y devuelva ese mismo "algo" utilizas los tipos genéricos.
+
+```TypeScript
+//Ejemplo: Una función que devuelva el primer elemento de un array de lo que sea
+function returnFirst(array: T[]): T {
+	return T[0];
+}
+```
