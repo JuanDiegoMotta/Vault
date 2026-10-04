@@ -1084,5 +1084,31 @@ type Respuesta<T> {
 }
 
 const r1: Respuesta<string[]> = { datos: ["a", "b", "c"], error: null }
-const r2: Respuesta<{id: number}> = { datos: {id: 4}}
+const r2: Respuesta<{id: number}> = { datos: {id: 4}, error: null}
 ```
+
+**Genéricos con extends**
+A veces quieres que cumplan algo, para ello puedes usar "extends"
+```TypeScript
+//Que tenga una prop en específico
+const masLargo = <T extends { length: number }>(a: T, b: T): T =>
+	a.length > b.length? a : b;
+
+masLargo(4, 5) //-> 5
+
+//Con keyof y indexed access
+const obtener = <T, K extends keyof T>(lista: T[], clave: K): T[K] => lista[clave];
+const usuario = {nombre: "Juan", edad: 25}
+
+obtener(usuario, "nombre") //-> "Juan"
+
+```
+
+### Resumen
+
+- **`<T>`** es un parámetro de tipo: conecta los tipos de entrada y salida.
+- TS lo **infiere** en la mayoría de los casos.
+- **`<T extends X>`** restringe qué tipos se aceptan.
+- Funciones, `type` e `interface` pueden ser genéricos.
+- Como siempre, **se borra al compilar**: los genéricos solo existen en TS.
+
