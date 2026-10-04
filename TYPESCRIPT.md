@@ -1140,5 +1140,41 @@ actualizar(ana, {edad: 30}) //Ok
 actualizar(juan, {rol: "Admin"}) //ERROR
 ```
 
-Su opuesto es Required`<T>`. Hace que todas las pro
+Su opuesto es Required`<T>`. Hace que todas las propiedades sean obligatorias.
 
+**Pick`<T>`**
+
+Crea un tipo solo con las propiedades que elijas.
+```TypeScript
+type UsuarioResumen = Pick<Usuario, "id" | "name">; //{id: number, name: string}
+```
+
+**Omit`<T>`**
+
+Es lo contrario de Pick, todas menos las que elijas
+```TypeScript
+type UsuarioSinId = Omit<Usuario, "id"> //{ nombre: string; email: string; edad: number }
+```
+
+**Record`<Claves, Valor>`**
+Crea un objeto cuyas claves son de un tipo y sus valores de otro
+```TypeScript
+type Rol = "admin" | "editor" | "lector";
+const permisos: Record<Rol, string[]> = {
+	admin: ["leer", "escribir", "borrar"], 
+	editor: ["leer", "escribir"], 
+	lector: ["leer"]
+};
+```
+
+### Resumen
+
+| Utility type   | Qué hace                                | Uso típico                             |
+| -------------- | --------------------------------------- | -------------------------------------- |
+| `Partial<T>`   | Todo opcional                           | Actualizaciones parciales              |
+| `Required<T>`  | Todo obligatorio                        | Al revés que `Partial`                 |
+| `Readonly<T>`  | Todo `readonly`                         | Datos que no deben cambiar             |
+| `Pick<T, K>`   | Solo las claves indicadas               | Tomar una parte de un tipo             |
+| `Omit<T, K>`   | Todas menos las indicadas               | Crear sin `id`, quitar campos internos |
+| `Record<K, V>` | Diccionario de claves `K` y valores `V` | Mapear opciones a valores              |
+Todos **se borran al compilar**: solo transforman tipos.
