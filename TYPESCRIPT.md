@@ -1056,12 +1056,33 @@ Ojo: TS confía en ti (como con `as`). No comprueba que tu función verifique re
 | `"prop" in x`           | Objetos distinguibles por sus propiedades                 |
 | `switch (x.tipo)`       | ⭐ Uniones discriminadas                                   |
 | `(x): x is T =>`        | Comprobaciones reutilizables propias                      |
-#### TIPOS GENÉRICOS
-Cuando quieres que una función reciba "algo" y devuelva ese mismo "algo" utilizas los tipos genéricos.
+#### GENÉRICOS
+Cuando quieres que una función reciba "algo" y devuelva ese mismo "algo" utilizas las variables de tipo (genéricos).
 
 ```TypeScript
 //Ejemplo: Una función que devuelva el primer elemento de un array de lo que sea
-function returnFirst(array: T[]): T {
+function returnFirst<T>(array: T[]): T {
 	return T[0];
 }
+
+returnFirst<string>(["a", "b", "c"]); //"a"
+returnFirst([1, 2, 3]) //1 -> TS infiere el tipo según el argumento
+```
+
+Con las arrow function `<T>` va delante de los paréntesis.
+
+```TypeScript
+const returnFirst = <T>(array: T[]): T => T[0];
+```
+
+**Alias y interfaces genéricos**
+Los alias y tipos también pueden ser genéricos
+```TypeScript
+type Respuesta<T> {
+	datos: T;
+	error: string | null;
+}
+
+const r1: Respuesta<string[]> = { datos: ["a", "b", "c"], error: null }
+const r2: Respuesta<{id: number}> = { datos: {id: 4}}
 ```
