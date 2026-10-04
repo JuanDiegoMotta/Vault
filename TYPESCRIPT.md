@@ -1112,3 +1112,33 @@ obtener(usuario, "nombre") //-> "Juan"
 - Funciones, `type` e `interface` pueden ser genéricos.
 - Como siempre, **se borra al compilar**: los genéricos solo existen en TS.
 
+#### UTILITY TYPES
+Genéricos que trae TS por defecto
+
+**Partial`<T>`**
+Hace que todas las propiedades del objeto sean opcionales
+```TypeScript
+type Usuario = {
+	id: number;
+	name: string;
+	age: number;
+	email: string;
+}
+
+type UsuarioParcial = Partial<Usuario>;
+//{ id?: number; nombre?: string; email?: string; edad?: number }
+```
+
+Se utilizan sobre todo en funciones de actualización donde solo se pasa alguna propiedad
+```TypeScript
+const actualizar = (u: Usuario, cambio: Partial<Usuario>): Usuario => ({
+	...u,
+	...cambio
+});
+
+actualizar(ana, {edad: 30}) //Ok
+actualizar(juan, {rol: "Admin"}) //ERROR
+```
+
+Su opuesto es Required`<T>`. Hace que todas las pro
+
