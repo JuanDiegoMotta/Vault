@@ -48,23 +48,9 @@
               "icon": "lucide-file",
               "title": "TYPESCRIPT"
             }
-          },
-          {
-            "id": "82a524653e1f6fe6",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Untitled 1.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Untitled 1"
-            }
           }
         ],
-        "currentTab": 3
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -243,10 +229,10 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "82a524653e1f6fe6",
+  "active": "b9474dd3f2484140",
   "lastOpenFiles": [
-    "TYPESCRIPT.md",
     "Untitled 1.md",
+    "TYPESCRIPT.md",
     "Untitled.md",
     "Preguntas clave.md",
     "What is a plain Java project.md",
